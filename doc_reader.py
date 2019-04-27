@@ -15,6 +15,10 @@ class doc_reader:
                 for sentence in line.text.split('.'):
                     self.file.append(sentence)
 
+    def print_text(self):
+        for line in self.file:
+            print(line)
+
     def get_text(self):
         return self.file
 

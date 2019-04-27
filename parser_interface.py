@@ -18,11 +18,15 @@ def main():
     while (True):
         commands = input('enter command$').split(' ')
         if (commands[0] == 'find'):
-            parser.find_word(commands[1])
+            parser.find_word(' '.join(commands[1:]))
         elif (commands[0] == 'sub'):
-            parser.replace_word(commands[1], commands[2])
+            parser.replace_word(commands[1], ' '.join(commands[2:]))
         elif (commands[0] == 'emplace_after'):
-            parser.emplace_after(commands[1], input('what we insert?'))
+            parser.emplace_after(commands[1], ' '.join(commands[2:]))
+        elif (commands[0] == 'print'):
+            document.print_text()
+        elif (commands[0] == 'exit'):
+            break
 
 
 if __name__ == '__main__':
