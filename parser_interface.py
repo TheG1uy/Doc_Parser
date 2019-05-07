@@ -25,6 +25,13 @@ def main():
             parser.emplace_after(commands[1], ' '.join(commands[2:]))
         elif (commands[0] == 'print'):
             document.print_text()
+        elif (commands[0] == 'save'):
+            document.save_file()
+        elif (commands[0] == 'help'):
+            print('Commands: \nfind words - searches for a words in a file \n' \
+                'sub words replacement - replaces the words in the file \n' \
+                'emplace_after words insert - insert the words in the file \n' \
+                'print - print file')
         elif (commands[0] == 'exit'):
             break
 
