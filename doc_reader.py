@@ -2,33 +2,20 @@ from docx import Document
 
 class doc_reader:
     def __init__(self, _path_to_doc):
-        self.path_to_doc = _path_to_doc
-        self.file = []
-        if (_path_to_doc.find('.txt') != -1):
-            with open(_path_to_doc, 'r') as doc:
-                for line in doc:
-                    for sentence in line.split('.'):
-                        self.file.append(sentence)
-        else:
-            doc = Document('test.docx')
-            for line in doc.paragraphs:
-                for sentence in line.text.split('.'):
-                    self.file.append(sentence)
+        self.doc = None
+        if (_path_to_doc != None):
+            self.path_to_doc = _path_to_doc
+            self.doc = Document(self.path_to_doc)
 
-    def print_text(self):
-        for line in self.file:
-            print(line)
+    def print_doc(self):
+        results = []
+        for line_num in range(len(self.doc.paragraphs)):
+                results.append(self.doc.paragraphs[line_num].text)
+        return results
 
-    def get_text(self):
-        return self.file
+    def get_doc(self):
+        return self.doc
 
     def save_file(self):
-        if (self.path_to_doc.find('.txt') != -1):
-            with open(self.path_to_doc, 'w') as doc:
-                for line in self.file:
-                    doc.write(line)
-        else:
-            doc = Document()
-            for line in self.file:
-                doc.add_paragraph(line)
-            doc.save(self.path_to_doc)
+        self.doc.save(self.path_to_doc)
+        return 'Документ ' + self.path_to_doc +  ' сохранен'
